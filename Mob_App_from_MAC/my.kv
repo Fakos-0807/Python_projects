@@ -1,0 +1,183 @@
+#: kivy 2.3.1
+#:import Timer timer.Timer
+
+
+
+<CustomLabel@Label>:
+    font_size: sp(16)
+    size_hint:(1,None)
+    height: dp(230)
+    pos_hint: {"y":0.1}
+    text_size: (self.width, None)
+    size:self.texture_size
+
+<CustomButton@Button>:
+    size_hint: (0.6,None)
+    height: dp(45)
+    pos_hint: {"center_x":0.5}
+
+<Container@BoxLayout>:
+    orientation:"vertical"
+    size_hint: (1,1)
+    padding:[root.width * 0.1, root.width * 0.1, root.width * 0.1, root.width * 0.1]
+    spacing:dp(20)
+
+<MyTimer@Timer>:
+    pos_hint: {"center_x": 0.5}
+    spacing: dp(50)
+    height: dp(45)
+
+<First>:
+    Container:
+        StackLayout:
+            spacing: dp(15)
+
+            CustomLabel:
+                text: root.hint 
+                text_size: (self.width, None)
+                halign: 'justify'
+
+            BoxLayout:
+                orientation: 'vertical'
+                spacing: dp(5)
+                size_hint: (1,None)
+
+                BoxLayout:
+                    orientation: 'horizontal'
+                    size_hint: (1,None)
+                    height: sp(30)
+                
+                    CustomLabel:
+                        text:"Введіть ім'я"
+                        size_hint:(0.65, None)
+                        pos_hint:{'center_y':0.5}
+
+                    TextInput:
+                        id: person_name
+                        multiline: False
+                        size_hint: (1,1)
+
+                BoxLayout:
+                    orientation:'horizontal'
+                    size_hint:(1,None)
+                    height: sp(30)
+
+                    CustomLabel:
+                        text: 'Введіть вік'
+                        size_hint: (0.65, None)
+                        pos_hint: {'center_y':0.5}
+
+                    TextInput:
+                        id: age
+                        multiline: False
+                        
+            
+        CustomButton:
+            text:'Почати'
+            id: btn 
+            on_press: root.next()
+
+
+<Second>:
+    Container:
+
+        CustomLabel:
+            text: root.hint 
+            size_hint: (1,1)
+
+        MyTimer:
+            id:timer
+            total_time: 3
+            on_done: root.timer_finished()
+
+        BoxLayout:
+            orientation: 'horizontal'
+            size_hint: (1,None)
+            height: sp(30)
+            
+            CustomLabel:
+                text:"Введіть результат"
+                size_hint:(0.45, None)
+                pos_hint:{'center_y':0.5}
+
+            TextInput:
+                id: pulse_1
+                multiline: False
+                disabled: True
+
+        CustomButton:
+            text:'Почати'
+            id: btn 
+            on_press: root.next()
+
+<Third>:
+    Container:
+        CustomLabel:
+            text: root.hint 
+            size_hint: (1, 0.5)
+            height: dp(30)
+            pos_hint: {'center_y': 0.5}
+
+
+        CustomButton:
+            text:'Продовжити'
+            id: btn 
+            on_press: root.next()
+
+<Four>:
+    Container:
+
+        CustomLabel:
+            text: root.hint 
+            
+        MyTimer:
+            id:timer
+            total_time: 3
+            on_done: root.timer_finished()
+        
+        BoxLayout:
+            orientation:"horizontal"
+            size_hint: (1,None)
+            height: sp(30)
+                
+            CustomLabel:
+                text:"До відпочинку"
+                size_hint:(0.45, None)
+                pos_hint:{'center_y':0.5}
+
+            TextInput:
+                id: pulse_2
+                multiline: False
+                disabled: True
+
+        BoxLayout:
+            orientation:"horizontal"
+            size_hint:(1,None)
+            height: sp(30)
+
+            CustomLabel:
+                text: 'Результат після відпочинку'
+                size_hint: (0.45, None)
+                pos_hint: {'center_y':0.5}
+
+            TextInput:
+                id: pulse_3
+                multiline: False
+                disabled: True
+        CustomButton:
+            text:'Почати'
+            id: btn
+            on_press: root.next()
+
+<Five>:
+    on_enter: root.before()
+    Container:
+        StackLayout:
+            spacing: dp(10)
+            
+            CustomLabel:
+                id: name
+            CustomLabel:
+                id:result
+                text: '' 
+                
